@@ -1,3 +1,13 @@
+#include <Servo.h>
+
+#include <Adafruit_MotorShield.h>
+
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+int dir = +1;
+
 
 const int pot    = A0;
 const int sensor = A1;
@@ -13,6 +23,7 @@ void setup() {
   pinMode(pot,INPUT);
   pinMode(sensor,INPUT);
   Serial.begin(9600);
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop() {
@@ -27,4 +38,12 @@ void loop() {
   Serial.print(sensor_reading);
   Serial.print("  pot: ");
   Serial.print(pot_reading);
+
+  if(pos>180){dir = -1;}
+  if(pos<1){dir=1;}
+  pos = pos+dir;
+  myservo.write(pos);              // tell servo to go to position in variable 'pos'
+  delay(15);                       // waits 15ms for the servo to reach the position
 }
+
+
