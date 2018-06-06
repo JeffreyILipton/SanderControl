@@ -6,8 +6,8 @@ Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 
 int pos = 0;    // variable to store the servo position
-int dir = +1;
-
+int dir = 0;
+int dir_mag = 20;
 
 const int pot    = A0;
 const int sensor = A1;
@@ -38,12 +38,14 @@ void loop() {
   Serial.print(sensor_reading);
   Serial.print("  pot: ");
   Serial.print(pot_reading);
+  Serial.print("  pos: ");
+  Serial.print(pos);
 
-  if(pos>180){dir = -1;}
-  if(pos<1){dir=1;}
+  if(pos>180){dir = -dir_mag;}
+  if(pos<1){dir = dir_mag;}
   pos = pos+dir;
   myservo.write(pos);              // tell servo to go to position in variable 'pos'
-  delay(15);                       // waits 15ms for the servo to reach the position
+  //delay(15);                       // waits 15ms for the servo to reach the position
 }
 
 
