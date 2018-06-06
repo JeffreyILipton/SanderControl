@@ -47,11 +47,11 @@ void loop() {
   Serial.println(" ");
   Serial.print("Button: ");
   Serial.print(button_state);    
-  Serial.print(",  sensor: ");
+  Serial.print("  sensor: ");
   Serial.print(sensor_reading);
-  Serial.print(",  pot: ");
+  Serial.print("  pot: ");
   Serial.print(pot_reading);
-  Serial.print(",  pos: ");
+  Serial.print("  pos: ");
   Serial.print(pos);
 
   
