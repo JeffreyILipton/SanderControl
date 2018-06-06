@@ -41,19 +41,18 @@ void loop() {
   pot_reading = analogRead(pot);
 
 
-  pos = (int) servorange/val_range*pot_reading;
+  pos = servorange*pot_reading/val_range;
 
   
   Serial.println(" ");
   Serial.print("Button: ");
   Serial.print(button_state);    
-  Serial.print("  sensor: ");
+  Serial.print(",  sensor: ");
   Serial.print(sensor_reading);
-  Serial.print("  pot: ");
+  Serial.print(",  pot: ");
   Serial.print(pot_reading);
-  Serial.print("  pos: ");
+  Serial.print(",  pos: ");
   Serial.print(pos);
-
 
   
 
