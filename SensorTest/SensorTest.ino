@@ -17,6 +17,13 @@ int button_state =0;
 int sensor_reading;
 int pot_reading;
 
+
+const int maxval = 1023;
+const int minval = 0; 
+int val_range = 0;
+int percent = 0;
+float servorange = 180.0;
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(button,INPUT_PULLUP);
@@ -24,6 +31,7 @@ void setup() {
   pinMode(sensor,INPUT);
   Serial.begin(9600);
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  val_range = maxval-minval;
 }
 
 void loop() {
@@ -31,6 +39,11 @@ void loop() {
   button_state = digitalRead(button);
   sensor_reading = analogRead(sensor);
   pot_reading = analogRead(pot);
+
+
+  pos = (int) servorange/val_range*pot_reading;
+
+  
   Serial.println(" ");
   Serial.print("Button: ");
   Serial.print(button_state);    
@@ -41,9 +54,12 @@ void loop() {
   Serial.print("  pos: ");
   Serial.print(pos);
 
-  if(pos>180){dir = -dir_mag;}
-  if(pos<1){dir = dir_mag;}
-  pos = pos+dir;
+
+  
+
+  //if(pos>180){dir = -dir_mag;}
+  //if(pos<1){dir = dir_mag;}
+  //pos = pos+dir;
   myservo.write(pos);              // tell servo to go to position in variable 'pos'
   //delay(15);                       // waits 15ms for the servo to reach the position
 }
