@@ -19,7 +19,15 @@ int pot_reading;
 
 
 const int maxval = 1023;
-const int minval = 0; 
+const int minval = 0;
+
+const int max_fsr_circle = 990;
+const int min_fsr_circle = 0;
+
+
+const int max_fsr_pad = 1009;
+const int min_fsr_pad = 0;
+
 int val_range = 0;
 int percent = 0;
 float servorange = 180.0;
